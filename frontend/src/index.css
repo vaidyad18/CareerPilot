@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+.pdf-mode * {
+  background: white !important;
+  color: black !important;
+  box-shadow: none !important;
+  border-color: #000 !important;
+  border-width: 0 !important;
+}
+
+.pdf-mode {
+  background: white !important;
+}
+
