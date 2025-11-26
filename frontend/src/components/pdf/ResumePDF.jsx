@@ -3,7 +3,6 @@ import { Page, Text, View, Document, StyleSheet, Link } from "@react-pdf/rendere
 const ResumePDF = ({ data, summary }) => {
   const theme = "#1e3a8a";
 
-  // Validation checks like the HTML version
   const hasSkills = data.skills && String(data.skills).trim().length > 0;
 
   const hasExperience = data.experience?.some(
@@ -78,7 +77,6 @@ const ResumePDF = ({ data, summary }) => {
     <Document>
       <Page size="A4" style={styles.page}>
 
-        {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.name}>{data.title}</Text>
           <Text style={styles.role}>{data.role}</Text>
@@ -98,7 +96,6 @@ const ResumePDF = ({ data, summary }) => {
 
         <View style={styles.line} />
 
-        {/* SUMMARY */}
         {summary && (
           <View>
             <Text style={styles.sectionTitle}>Summary</Text>
@@ -107,7 +104,6 @@ const ResumePDF = ({ data, summary }) => {
           </View>
         )}
 
-        {/* SKILLS */}
         {hasSkills && (
           <View style={{ marginTop: 10 }}>
             <Text style={styles.sectionTitle}>Skills</Text>
@@ -122,7 +118,6 @@ const ResumePDF = ({ data, summary }) => {
           </View>
         )}
 
-        {/* EXPERIENCE */}
         {hasExperience && (
           <View style={{ marginTop: 10 }}>
             <Text style={styles.sectionTitle}>Work Experience</Text>
@@ -144,7 +139,6 @@ const ResumePDF = ({ data, summary }) => {
           </View>
         )}
 
-        {/* PROJECTS */}
         {hasProjects && (
           <View style={{ marginTop: 10 }}>
             <Text style={styles.sectionTitle}>Projects</Text>
@@ -163,7 +157,6 @@ const ResumePDF = ({ data, summary }) => {
           </View>
         )}
 
-        {/* EDUCATION */}
         {hasEducation && (
           <View style={{ marginTop: 10 }}>
             <Text style={styles.sectionTitle}>Education</Text>

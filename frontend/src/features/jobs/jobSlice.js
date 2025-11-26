@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchResults: [],
-  myJobs: [],      // ensure this exists and is array
+  myJobs: [],      
   savedJobs: [],
   loading: false,
 };

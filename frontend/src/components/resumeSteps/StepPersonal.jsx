@@ -12,7 +12,6 @@ const StepPersonal = ({ form, setForm }) => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mt-6">
-        {/* Full Name */}
         <div className="relative">
           <input
             type="text"
@@ -25,7 +24,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* Job Role */}
         <div className="relative">
           <input
             type="text"
@@ -38,7 +36,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* Contact */}
         <div className="relative">
           <input
             type="text"
@@ -51,7 +48,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* Email */}
         <div className="relative">
           <input
             type="email"
@@ -64,7 +60,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* Address */}
         <div className="relative sm:col-span-2">
           <input
             type="text"
@@ -77,7 +72,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* LinkedIn */}
         <div className="relative sm:col-span-2">
           <input
             type="text"
@@ -92,7 +86,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* GitHub */}
         <div className="relative sm:col-span-2">
           <input
             type="text"
@@ -107,7 +100,6 @@ const StepPersonal = ({ form, setForm }) => {
           </label>
         </div>
 
-        {/* Portfolio */}
         <div className="relative sm:col-span-2">
           <input
             type="text"

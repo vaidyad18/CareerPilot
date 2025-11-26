@@ -4,7 +4,7 @@ import { setQuizLoading, setQuiz, setQuizResults } from "./quizSlice";
 export const generateQuiz = (topic, difficulty) => async (dispatch) => {
   try {
     dispatch(setQuizLoading(true));
-    const res = await api.post("/quiz/generate", { topic, difficulty }); // send both
+    const res = await api.post("/quiz/generate", { topic, difficulty }); 
     dispatch(setQuiz(res.data));
   } catch (error) {
     console.error("Quiz generation failed", error);

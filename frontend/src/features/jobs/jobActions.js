@@ -1,8 +1,6 @@
-import axios from "axios";
 import api from "../../services/api";
-import { setJobLoading, setSearchResults, setSavedJobs, setMyJobs, updateJobStatus } from "./jobSlice";
+import { setJobLoading, setSearchResults, setMyJobs, updateJobStatus } from "./jobSlice";
 
-// SEARCH JOBS USING JSEARCH API
 export const searchJobsLinkedIn = (query) => async (dispatch) => {
   try {
     dispatch(setJobLoading(true));
@@ -22,7 +20,7 @@ export const getMyJobs = () => async (dispatch) => {
   try {
     dispatch(setJobLoading(true));
     const res = await api.get("/jobs/mine");
-    dispatch(setMyJobs(res.data)); // now res.data is array
+    dispatch(setMyJobs(res.data)); 
 
   } catch (error) {
     console.log(error);

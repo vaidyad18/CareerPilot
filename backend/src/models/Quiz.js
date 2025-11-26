@@ -10,7 +10,7 @@ const QuizSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     topic: String,
-    difficulty: { type: String, default: "easy" },  // ADD THIS
+    difficulty: { type: String, default: "easy" },  
     questions: [QuestionSchema],
   },
   { timestamps: true }

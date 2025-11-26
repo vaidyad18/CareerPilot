@@ -5,7 +5,6 @@ import {
   addResume,
 } from "./resumeSlice";
 
-// CREATE RESUME
 export const createResume = (data) => async (dispatch) => {
   try {
     dispatch(setResumeLoading(true));
@@ -18,7 +17,7 @@ export const createResume = (data) => async (dispatch) => {
     dispatch(setResumeLoading(false));
   }
 };
-// GET USER RESUMES
+
 export const fetchMyResumes = () => async (dispatch) => {
   try {
     dispatch(setResumeLoading(true));
@@ -32,7 +31,6 @@ export const fetchMyResumes = () => async (dispatch) => {
   }
 };
 
-// GENERATE AI SUMMARY
 export const generateSummary = (data, setSummary) => async () => {
   try {
     const res = await api.post("/resumes/generate/summary", data);

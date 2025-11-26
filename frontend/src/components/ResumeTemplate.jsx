@@ -1,9 +1,8 @@
-/* FINAL PROFESSIONAL RESUME TEMPLATE WITH CLICKABLE ICONS */
+
 
 const ResumeTemplate = ({ data, summary }) => {
-  const theme = "#1e3a8a"; // deep blue
+  const theme = "#1e3a8a"; 
 
-  // Helper validation functions
   const hasExperience = data.experience?.some(
     (exp) => exp.title || exp.company || exp.description
   );
@@ -22,7 +21,6 @@ const ResumeTemplate = ({ data, summary }) => {
       className="bg-white text-black text-sm w-[700px] p-8 shadow-md border-t-12"
       style={{ borderColor: theme }}
     >
-      {/* ================= HEADER ================= */}
       <div className="text-center mb-4">
         <h1 className="text-3xl font-bold capitalize" style={{ color: theme }}>
           {data.title}
@@ -36,7 +34,6 @@ const ResumeTemplate = ({ data, summary }) => {
           <p>{data.email || ""}</p>
         </div>
 
-        {/* SOCIAL ICONS */}
         <div className="flex justify-center gap-4 mt-2">
           {data.links.linkedin && (
             <a href={data.links.linkedin} target="_blank" rel="noopener noreferrer">
@@ -69,7 +66,6 @@ const ResumeTemplate = ({ data, summary }) => {
 
       <hr style={{ borderColor: theme }} className="border-2 mb-4" />
 
-      {/* ================= SUMMARY ================= */}
       {summary && (
         <div className="mb-5">
           <h2 className="text-lg font-bold" style={{ color: theme }}>
@@ -80,7 +76,6 @@ const ResumeTemplate = ({ data, summary }) => {
         </div>
       )}
 
-      {/* ================= SKILLS ================= */}
       {data.skills && String(data.skills).trim().length > 0 && (
         <div className="mb-5">
           <h2 className="text-lg font-bold" style={{ color: theme }}>
@@ -101,7 +96,6 @@ const ResumeTemplate = ({ data, summary }) => {
         </div>
       )}
 
-      {/* ================= EXPERIENCE ================= */}
       {hasExperience && (
         <div className="mb-5">
           <h2 className="text-lg font-bold" style={{ color: theme }}>
@@ -129,7 +123,6 @@ const ResumeTemplate = ({ data, summary }) => {
         </div>
       )}
 
-      {/* ================= PROJECTS ================= */}
       {hasProjects && (
         <div className="mb-5">
           <h2 className="text-lg font-bold" style={{ color: theme }}>
@@ -158,7 +151,6 @@ const ResumeTemplate = ({ data, summary }) => {
         </div>
       )}
 
-      {/* ================= EDUCATION ================= */}
       {hasEducation && (
         <div className="mb-5">
           <h2 className="text-lg font-bold" style={{ color: theme }}>

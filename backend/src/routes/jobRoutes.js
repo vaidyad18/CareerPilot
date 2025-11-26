@@ -11,7 +11,7 @@ const {
 
 router.post("/save", auth, saveJob);
 router.get("/mine", auth, getMyJobs);
-router.post("/apply/:id", auth, markApplied); // <------- ADD THIS
+router.post("/apply/:id", auth, markApplied); 
 router.get("/search/linkedin", auth, searchLinkedInJobs);
 
 

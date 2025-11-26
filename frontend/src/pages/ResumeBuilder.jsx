@@ -42,7 +42,6 @@ const ResumeBuilder = () => {
     education: [{ school: "", degree: "", start: "", end: "" }],
   });
 
-  // Load when editing existing resume
   useEffect(() => {
     const loadResume = async () => {
       try {
@@ -56,7 +55,6 @@ const ResumeBuilder = () => {
     if (id) loadResume();
   }, [id]);
 
-  // Generate AI summary
   const generateAISummary = async () => {
     try {
       setSummaryLoading(true);
@@ -75,7 +73,6 @@ const ResumeBuilder = () => {
     }
   };
 
-  // Save resume with toast feedback
   const saveResume = async () => {
     try {
       dispatch(createResume({ ...form, summary }));
@@ -96,7 +93,6 @@ const ResumeBuilder = () => {
           step === 7 ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-2"
         }`}
       >
-        {/* LEFT SIDE FORM */}
         {step !== 7 && (
           <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-4 py-8 shadow-xl">
             <p className="text-gray-400 mb-5 text-sm tracking-wide">
@@ -159,7 +155,6 @@ const ResumeBuilder = () => {
           </div>
         )}
 
-        {/* RIGHT SIDE PREVIEW */}
         {step !== 7 && (
           <div className="sticky top-10 print:hidden">
             <div className="rounded-2xl overflow-hidden border border-white/10 shadow-xl backdrop-blur-xl bg-white p-4">
@@ -168,7 +163,6 @@ const ResumeBuilder = () => {
           </div>
         )}
 
-        {/* STEP 7 - DOWNLOAD */}
         {step === 7 && (
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white">🎉 Resume Ready</h2>

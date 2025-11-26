@@ -4,7 +4,7 @@ const initialState = {
   stats: null,
   latest: null,
   resumes: [],
-  jobs: [],       // ADD THIS
+  jobs: [],       
   loading: false,
 };
 
@@ -19,7 +19,7 @@ const dashboardSlice = createSlice({
       state.stats = action.payload.stats;
       state.latest = action.payload.latest;
       state.resumes = action.payload.resumes;
-      state.jobs = action.payload.jobs || [];   // ADD THIS
+      state.jobs = action.payload.jobs || []; 
     },
   },
 });

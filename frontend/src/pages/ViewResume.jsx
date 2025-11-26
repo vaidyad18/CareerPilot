@@ -14,7 +14,7 @@ const ViewResume = () => {
     const fetchResume = async () => {
       try {
         const res = await api.get(`/resumes/${resumeId}`);
-        setResumeInfo(res.data);  // response already is resume object
+        setResumeInfo(res.data); 
       } catch (error) {
         console.log(error);
       }
