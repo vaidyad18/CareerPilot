@@ -1,14 +1,79 @@
 @import "tailwindcss";
 
-.pdf-mode * {
-  background: white !important;
-  color: black !important;
-  box-shadow: none !important;
-  border-color: #000 !important;
-  border-width: 0 !important;
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-surface: #050505;
+  --color-surface-soft: #0c0c0c;
+  --color-surface-elevated: #111111;
+  --color-blue-accent: #3b82f6;
+  --color-indigo-accent: #6366f1;
 }
 
-.pdf-mode {
-  background: white !important;
+@layer base {
+  body {
+    @apply bg-surface text-[#b1b1b1] font-sans antialiased selection:bg-blue-500/30 text-sm md:text-base;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply text-white font-bold tracking-tight;
+  }
+
+  /* Refined Professional Typography Scale */
+  h1 { @apply text-4xl md:text-5xl lg:text-7xl leading-tight; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
 }
+
+/* Elite Layout Utilities */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+  }
+}
+
+.horizontal-scroll {
+  @apply flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.glass {
+  @apply backdrop-blur-2xl bg-white/[0.04] border border-white/[0.08] shadow-2xl;
+}
+
+.glass-card {
+  @apply glass rounded-[32px] p-10 transition-all duration-500 hover:bg-white/[0.06] hover:border-white/10;
+}
+
+.gradient-text {
+  @apply bg-linear-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent;
+}
+
+.btn-primary {
+  @apply px-8 py-4 rounded-2xl bg-white text-black font-bold text-sm 
+         hover:bg-blue-600 hover:text-white transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-8 py-4 rounded-2xl border border-white/10 text-white font-bold text-sm 
+         hover:bg-white/5 hover:border-white/20 transition-all active:scale-95;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.pdf-mode * { background: white !important; color: black !important; box-shadow: none !important; border: none !important; }
 

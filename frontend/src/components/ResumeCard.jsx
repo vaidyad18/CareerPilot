@@ -1,4 +1,4 @@
-import { Loader2, MoreVertical, Eye, Trash2 } from "lucide-react";
+import { Loader2, MoreVertical, Eye, Trash2, FileText, Download } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -15,85 +15,111 @@ const ResumeCard = ({ resume, refreshData }) => {
       await axios.delete(`http://localhost:5000/api/resumes/${resume._id}`, {
         withCredentials: true,
       });
-      toast("Resume deleted");
+      toast.success("Resume deleted from repository");
       refreshData();
       setLoading(false);
       setShowConfirm(false);
     } catch (err) {
       console.error(err);
-      toast.error("Failed to delete");
+      toast.error("Failed to execute deletion");
       setLoading(false);
     }
   };
 
   return (
-    <div className="relative rounded-2xl overflow-hidden backdrop-blur-xl bg-white/10 border border-white/15 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition duration-300">
-      <Link to={`/view-resume/${resume._id}`}>
-        <div className="flex justify-center items-center py-12 bg-linear-to-t from-indigo-600/40 to-blue-500/40">
-          <img
-            className="w-16 sm:w-20 opacity-90 hover:opacity-100 transform hover:scale-110 transition"
-            src="https://cdn-icons-png.flaticon.com/512/7039/7039285.png"
-            alt="resume-icon"
-          />
+    <div className="relative group rounded-[32px] overflow-hidden glass border-white/5 shadow-xl hover:shadow-2xl hover:border-white/20 transition-all duration-500 h-full flex flex-col">
+      <Link to={`/view-resume/${resume._id}`} className="flex-1">
+        <div className="relative flex justify-center items-center py-14 bg-linear-to-b from-blue-600/10 to-transparent group-hover:from-blue-600/20 transition-all duration-500">
+          <div className="p-5 rounded-3xl bg-blue-500/10 text-blue-400 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+             <FileText size={48} strokeWidth={1.5} />
+          </div>
+          
+          <div className="absolute top-4 left-4">
+             <div className="px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-[9px] font-black uppercase tracking-widest text-gray-500 group-hover:text-blue-400 transition-colors">
+                v1.0
+             </div>
+          </div>
         </div>
       </Link>
 
-      <div
-        className="flex justify-between items-center px-4 py-3 border-t border-white/10"
-        style={{ backgroundColor: `${resume.theme}1A` }}
-      >
-        <p className="text-sm font-semibold capitalize text-white truncate max-w-[150px]">
-          {resume.title}
-        </p>
+      <div className="p-6 pt-0 mt-auto">
+        <div className="flex justify-between items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-bold text-white truncate capitalize group-hover:text-blue-400 transition-colors">
+              {resume.title || "Untitled Resume"}
+            </h3>
+            <p className="text-[10px] font-medium text-gray-500 uppercase tracking-widest mt-0.5">
+               Synthesized Profile
+            </p>
+          </div>
 
-        <button onClick={() => setShowMenu(!showMenu)}>
-          <MoreVertical className="w-5 h-5 text-gray-200 hover:text-white cursor-pointer transition" />
-        </button>
+          <div className="relative">
+             <button 
+               onClick={() => setShowMenu(!showMenu)}
+               className="p-2 rounded-xl hover:bg-white/10 text-gray-500 hover:text-white transition-colors"
+             >
+               <MoreVertical size={18} />
+             </button>
+
+             {showMenu && (
+               <>
+                 <div 
+                   className="fixed inset-0 z-10" 
+                   onClick={() => setShowMenu(false)}
+                 />
+                 <div className="absolute bottom-full right-0 mb-2 w-48 glass rounded-2xl border-white/10 shadow-2xl overflow-hidden z-20 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                   <Link
+                     to={`/view-resume/${resume._id}`}
+                     className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/10 transition-colors"
+                   >
+                     <Eye size={16} /> View Analysis
+                   </Link>
+                   <Link
+                     to={`/view-resume/${resume._id}`}
+                     className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-white/10 transition-colors"
+                   >
+                     <Download size={16} /> Export PDF
+                   </Link>
+                   <button
+                     className="flex items-center gap-3 w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
+                     onClick={() => {
+                       setShowMenu(false);
+                       setShowConfirm(true);
+                     }}
+                   >
+                     <Trash2 size={16} /> Delete Entry
+                   </button>
+                 </div>
+               </>
+             )}
+          </div>
+        </div>
       </div>
 
-      {showMenu && (
-        <div className="absolute top-20 right-3 w-40 bg-gray-900/90 border border-white/10 shadow-2xl rounded-xl overflow-hidden z-10 backdrop-blur-md animate-fadeIn">
-          <Link
-            to={`/resume/${resume._id}/view`}
-            className="flex items-center gap-2 px-4 py-3 text-sm text-gray-200 hover:bg-white/10 transition"
-          >
-            <Eye className="w-4 h-4" /> View
-          </Link>
-
-          <button
-            className="flex items-center gap-2 w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/20 transition"
-            onClick={() => {
-              setShowMenu(false);
-              setShowConfirm(true);
-            }}
-          >
-            <Trash2 className="w-4 h-4" /> Delete
-          </button>
-        </div>
-      )}
-
       {showConfirm && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-gray-900 border border-white/10 rounded-2xl p-6 w-[330px] shadow-2xl">
-            <h3 className="text-lg font-semibold text-white mb-2">Delete Resume?</h3>
-            <p className="text-sm text-gray-400 mb-5">
-              This action will permanently delete your resume.
+        <div className="fixed inset-0 bg-surface/80 backdrop-blur-md flex justify-center items-center z-[100] p-6">
+          <div className="glass border-white/10 rounded-[40px] p-10 max-w-sm w-full text-center shadow-2xl">
+            <div className="w-16 h-16 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto mb-6">
+               <Trash2 size={32} />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Confirm Erasure</h3>
+            <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+              This will permanently remove this profile from our secure storage. This action is irreversible.
             </p>
 
-            <div className="flex justify-end gap-3">
+            <div className="grid grid-cols-1 gap-3">
               <button
-                className="px-4 py-2 rounded-xl bg-gray-700 text-gray-200 hover:bg-gray-600 transition"
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancel
-              </button>
-
-              <button
-                className="px-4 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700 transition flex items-center gap-2"
+                className="btn-primary !bg-red-600 !hover:bg-red-700 flex items-center justify-center gap-2"
                 onClick={onDelete}
                 disabled={loading}
               >
-                {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Delete"}
+                {loading ? <Loader2 className="animate-spin" size={18} /> : "Validate Erasure"}
+              </button>
+              <button
+                className="px-6 py-3 rounded-2xl text-sm font-bold text-gray-500 hover:text-white hover:bg-white/5 transition-colors"
+                onClick={() => setShowConfirm(false)}
+              >
+                Retain Profile
               </button>
             </div>
           </div>
