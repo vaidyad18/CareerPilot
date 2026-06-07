@@ -4,6 +4,7 @@ import {
   setResumes,
   addResume,
 } from "./resumeSlice";
+import { toast } from "sonner";
 
 export const createResume = (data) => async (dispatch) => {
   try {
@@ -11,7 +12,7 @@ export const createResume = (data) => async (dispatch) => {
     const res = await api.post("/resumes", data);
     dispatch(addResume(res.data.resume));
   } catch (error) {
-    alert("Failed to create resume");
+    toast.error("Failed to create resume");
     console.error(error);
   } finally {
     dispatch(setResumeLoading(false));
@@ -24,7 +25,7 @@ export const fetchMyResumes = () => async (dispatch) => {
     const res = await api.get("/resumes");
     dispatch(setResumes(res.data));
   } catch (error) {
-    alert("Failed to fetch resumes");    console.error(error);
+    toast.error("Failed to fetch resumes");    console.error(error);
 
   } finally {
     dispatch(setResumeLoading(false));
@@ -36,7 +37,7 @@ export const generateSummary = (data, setSummary) => async () => {
     const res = await api.post("/resumes/generate/summary", data);
     setSummary(res.data.summary);
   } catch (error) {
-    alert("AI Summary generation failed");    console.error(error);
+    toast.error("AI Summary generation failed");    console.error(error);
 
   }
 };

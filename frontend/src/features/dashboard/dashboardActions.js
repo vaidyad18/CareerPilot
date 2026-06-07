@@ -1,5 +1,6 @@
 import api from "../../services/api";
 import { setDashboardLoading, setDashboardData } from "./dashboardSlice";
+import { toast } from "sonner";
 
 export const loadDashboard = () => async (dispatch) => {
   try {
@@ -9,7 +10,7 @@ export const loadDashboard = () => async (dispatch) => {
     dispatch(setDashboardData(res.data));
 
   } catch (error) {
-    alert("Failed to load dashboard");
+    toast.error("Failed to load dashboard");
   } finally {
     dispatch(setDashboardLoading(false));
   }

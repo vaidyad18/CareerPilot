@@ -1,5 +1,6 @@
 import api from "../../services/api";
 import { setLoading, setUser, logoutUser } from "./authSlice";
+import { toast } from "sonner";
 
 export const signupUser = (data) => async (dispatch) => {
   try {
@@ -11,7 +12,7 @@ export const signupUser = (data) => async (dispatch) => {
 
     dispatch(setUser(res.data)); 
   } catch (error) {
-    alert(error.response?.data?.message || "Signup failed");
+    toast.error(error.response?.data?.message || "Signup failed");
   } finally {
     dispatch(setLoading(false));
   }
@@ -27,7 +28,7 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch(setUser(res.data));
   } catch (err) {
-    alert("Login failed");
+    toast.error(err.response?.data?.message || "Login failed");
   } finally {
     dispatch(setLoading(false));
   }

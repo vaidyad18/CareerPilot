@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { generateSummaryFromGemini } from "../../services/AIModel";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const StepProjects = ({ form, setForm }) => {
   const [loadingIndex, setLoadingIndex] = useState(null);
@@ -52,7 +53,7 @@ Return ONLY bullet lines like:
       });
     } catch (error) {
       console.error("AI Project Error:", error);
-      alert("AI failed to generate project summary");
+      toast.error("AI failed to generate project summary");
     } finally {
       setLoadingIndex(null);
     }

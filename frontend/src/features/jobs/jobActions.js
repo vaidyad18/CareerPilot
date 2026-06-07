@@ -1,5 +1,6 @@
 import api from "../../services/api";
 import { setJobLoading, setSearchResults, setMyJobs, updateJobStatus } from "./jobSlice";
+import { toast } from "sonner";
 
 export const searchJobsLinkedIn = (query) => async (dispatch) => {
   try {
@@ -8,7 +9,7 @@ export const searchJobsLinkedIn = (query) => async (dispatch) => {
     dispatch(setSearchResults(res.data.jobs));
   } catch (err) {
     console.error(err);
-    alert("LinkedIn fetch failed");
+    toast.error("LinkedIn fetch failed");
   } finally {
     dispatch(setJobLoading(false));
   }

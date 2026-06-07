@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
-import { Rocket, Target, Zap, ShieldCheck, ArrowRight, Sparkles, TrendingUp, Globe, Users, Briefcase } from "lucide-react";
+import { Rocket, Target, Zap, ShieldCheck, ArrowRight, Sparkles, TrendingUp, Globe, Users, Briefcase, FileText } from "lucide-react";
 
 const Home = () => {
   const user = useSelector((state) => state.auth.user);

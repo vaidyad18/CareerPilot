@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { generateSummaryFromGemini } from "../../services/AIModel";
+import { toast } from "sonner";
 
 const StepExperience = ({ form, setForm }) => {
   const [loadingIndex, setLoadingIndex] = useState(null);
@@ -51,7 +52,7 @@ Do NOT include company name or Year.
       });
     } catch (error) {
       console.error("AI Work Exp Error:", error);
-      alert("AI failed to generate experience summary");
+      toast.error("AI failed to generate experience summary");
     } finally {
       setLoadingIndex(null);
     }
